@@ -42,10 +42,10 @@ exports.createUser = async (req, res, next) => {
     );
   }
   try {
-    const { name, email, phone } = req.body;
+    const { firtname , lastname, email, phone } = req.body;
     const [rows, fields] = await pool.query(
-      "INSERT INTO users(name,email,phone) VALUES(?,?,?)",
-      [name, email, phone]
+      "INSERT INTO users(firstname,lastname,email,phone) VALUES(?,?,?,?)",
+      [firtname,lastname, email, phone]
     );
     res.status(201).json({
       message: "user created",
@@ -69,7 +69,8 @@ exports.updateUser = async (req, res, next) => {
   try {
     const id = req.params.id;
     const {
-      name: updatedName,
+      firstname: updatedFirstName,
+      lastname : updatedLastName,
       email: updatedEmail,
       phone: updatedPhone,
     } = req.body;
@@ -83,8 +84,8 @@ exports.updateUser = async (req, res, next) => {
     }
 
     await pool.query(
-      "UPDATE users SET name = ? , email = ? , phone = ? WHERE id = ? ",
-      [updatedName, updatedEmail, updatedPhone, id]
+      "UPDATE users SET firstname = ? , lastname = ? , email = ? , phone = ? WHERE id = ? ",
+      [updatedFirstName, updatedLastName, updatedEmail, updatedPhone, id]
     );
     res.json({
       message: "updated successfully",

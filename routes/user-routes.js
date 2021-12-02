@@ -8,7 +8,8 @@ router.get("/:id", userController.getUserById);
 router.post(
   "/create",
   [
-    check("name").isLength({ min: 2 }),
+    check("firstname").isLength({ min: 2 }),
+    check("lastname").isLength({ min: 2 }),
     check("email").isEmail(),
     check("phone").isLength({ min: 10 }),
   ],
@@ -17,7 +18,8 @@ router.post(
 router.patch(
   "/update/:id",
   [
-    check("name").isLength({ min: 2 }),
+    check("firstname").isLength({ min: 2 }),
+    check("lastname").isLength({ min: 2 }),
     check("email").isEmail(),
     check("phone").isLength({ min: 10 }),
   ],
